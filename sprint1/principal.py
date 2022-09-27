@@ -1,3 +1,3 @@
-from Fibonacci import funcion_fibonacci
+from fibonacci2 import funcion_fibonacci2
 opcion=input("Introduzca número: ")
-print(funcion_fibonacci(int(opcion)))
+print(funcion_fibonacci2(int(opcion)))
