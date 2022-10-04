@@ -1,10 +1,12 @@
 import gi
+from gi.overrides.GdkPixbuf import GdkPixbuf
+
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 from cell import Cell
 
 class MainWindow(Gtk.Window):
-    image= Gtk.Image.new_from_file("C:\\msys64\\home\\Hector\\DI\\sprint1gtk\\dialog\\catalog\\data\\edited\\Suns.jpg")
+
     flowbox= Gtk.FlowBox()
     def __init__(self):
         super().__init__(title="NBA")
@@ -23,16 +25,31 @@ class MainWindow(Gtk.Window):
         scrolled.add(self.flowbox)
         self.add(scrolled)
 
-        
-        cell_one= Cell("Suns", Gtk.Image.new_from_file("C:\\msys64\\home\\Hector\\DI\\sprint1gtk\\dialog\\catalog\\data\\edited\\Suns.jpg"))
-        cell_two = Cell("Hornets", Gtk.Image.new_from_file(
-            "C:\\msys64\\home\\Hector\\DI\\sprint1gtk\\dialog\\catalog\\data\\edited\\Hornets.png"))
-        cell_three = Cell("Nets", Gtk.Image.new_from_file(
-            "C:\\msys64\\home\\Hector\\DI\\sprint1gtk\\dialog\\catalog\\data\\edited\\Nets.jpg"))
-        cell_four = Cell("Raptors", Gtk.Image.new_from_file(
-            "C:\\msys64\\home\\Hector\\DI\\sprint1gtk\\dialog\\catalog\\data\\edited\\Raptors.jpg"))
-        cell_five = Cell("Spurs", Gtk.Image.new_from_file(
-            "C:\\msys64\\home\\Hector\\DI\\sprint1gtk\\dialog\\catalog\\data\\edited\\Spurs.png"))
+        suns = Gtk.Image()
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale("data/unedited/Suns.jpg", 200, 200, False)
+        suns.set_from_pixbuf(pixbuf)
+        cell_one= Cell("Suns", suns)
+
+        hornets = Gtk.Image()
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale("data/unedited/Hornets.png", 200, 200, False)
+        hornets.set_from_pixbuf(pixbuf)
+        cell_two = Cell("Hornets", hornets)
+
+        nets=Gtk.Image()
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale("data/unedited/Nets.jpg", 200, 200, False)
+        nets.set_from_pixbuf(pixbuf)
+        cell_three = Cell("Nets", nets)
+
+        raptors = Gtk.Image()
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale("data/unedited/Raptors.jpg", 200, 200, False)
+        raptors.set_from_pixbuf(pixbuf)
+        cell_four = Cell("Raptors", raptors)
+
+        spurs = Gtk.Image()
+        pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale("data/unedited/Spurs.png", 200, 200, False)
+        spurs.set_from_pixbuf(pixbuf)
+        cell_five = Cell("Spurs", spurs)
+
         self.flowbox.add(cell_one)
         self.flowbox.add(cell_two)
         self.flowbox.add(cell_three)
