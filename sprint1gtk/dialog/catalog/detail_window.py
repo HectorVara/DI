@@ -6,8 +6,8 @@ from gi.repository import Gtk
 class DetailWindow(Gtk.Window):
 
 
-    def __init__(self, image, label1, label2):
-        super().__init__(title=label1)
+    def __init__(self, image, titulo, label2):
+        super().__init__(title=titulo)
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
 

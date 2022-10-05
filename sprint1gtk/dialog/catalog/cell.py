@@ -7,14 +7,14 @@ from detail_window import DetailWindow
 class Cell(Gtk.EventBox):
     name= None
     image=None
-    label1=None
+    titulo=None
     label2=None
     def __init__(self, name, image):
      super().__init__()
      self.name=name
 
      self.image=image
-     self.label1=Gtk.Label(name)
+     self.titulo=name
      self.label2 = Gtk.Label("Logo de los "+name)
      box=Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
      box.pack_start(Gtk.Label(label=name), False, False, 0)
@@ -24,7 +24,7 @@ class Cell(Gtk.EventBox):
 
     def on_click(self, widget, event):
         image = self.asignarImagen(self.name)
-        dwin= DetailWindow(image, self.label1, self.label2)
+        dwin= DetailWindow(image, self.titulo, self.label2)
         dwin.show_all()
 
     def asignarImagen(self, name):
