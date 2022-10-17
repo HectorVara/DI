@@ -7,7 +7,7 @@ class NoWindow(Gtk.Window):
     label=Gtk.Label("Has pulsado no")
 
     def __init__(self):
+        # Añadimos el box y le metemos el label con el mensaje
         super().__init__(title="NO")
-        self.connect("destroy", Gtk.main_quit)
         self.add(self.box)
         self.box.pack_start(self.label, True, True, 0)

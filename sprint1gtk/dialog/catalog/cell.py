@@ -1,5 +1,5 @@
 import gi
-from gi.overrides import GdkPixbuf
+from gi.repository import GdkPixbuf
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
