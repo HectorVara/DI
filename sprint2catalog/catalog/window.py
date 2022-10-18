@@ -1,18 +1,19 @@
 import gi
-from gi.overrides.GdkPixbuf import GdkPixbuf
+from gi.repository import GdkPixbuf
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 from cell import Cell
 
 class MainWindow(Gtk.Window):
-
+    spinner= Gtk.Spinner()
     flowbox= Gtk.FlowBox()
     def __init__(self):
         super().__init__(title="NBA")
         self.connect("destroy", Gtk.main_quit)
         self.set_border_width(15)
         self.set_default_size(400, 400)
+        self.spinner.props.active= True
 
         header=Gtk.HeaderBar(title="Equipos")
         header.set_subtitle("Algunos equipos")
@@ -23,6 +24,7 @@ class MainWindow(Gtk.Window):
         scrolled= Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         scrolled.add(self.flowbox)
+        self.flowbox.add(self.spinner)
         self.add(scrolled)
 
         suns = Gtk.Image()
