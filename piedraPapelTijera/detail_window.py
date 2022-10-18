@@ -3,12 +3,14 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
 class DetailWindow(Gtk.Window):
-    box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-    box2 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
-    label= Gtk.Label("")
+
+
     resultado=""
 
     def __init__(self, image, imagecpu, jugadaUsuario, jugadaCPU):
+        label = Gtk.Label("")
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        box2 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         super().__init__(title="Piedra, papel, tijera")
         self.set_border_width(15)
         self.set_default_size(200, 200)
@@ -24,9 +26,9 @@ class DetailWindow(Gtk.Window):
             self.resultado= "Has ganado!!"
 
 
-        self.label.set_text(self.resultado)
-        self.add(self.box)
-        self.box.pack_start(self.label, True, True, 0)
-        self.box.pack_start(self.box2, True, True, 0)
-        self.box2.pack_start(image, True, True, 0)
-        self.box2.pack_start(imagecpu, True, True, 0)
+        label.set_text(self.resultado)
+        self.add(box)
+        box.pack_start(label, True, True, 0)
+        box.pack_start(box2, True, True, 0)
+        box2.pack_start(image, True, True, 0)
+        box2.pack_start(imagecpu, True, True, 0)
