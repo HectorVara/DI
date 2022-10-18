@@ -1,0 +1,7 @@
+[
+{"name": "Suns", "description": "Logo de los Suns", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Suns.jpg"},
+{"name": "Hornets", "description": "Logo de los Hornets", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Hornets.png"},
+{"name": "Raptors", "description": "Logo de los Raptors", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Raptors.jpg"},
+{"name": "Spurs", "description": "Logo de los Spurs", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Spurs.png"},
+{"name": "Nets", "description": "Logo de los Nets", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Nets.jpg"}
+]
