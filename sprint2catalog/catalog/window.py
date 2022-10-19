@@ -29,7 +29,7 @@ class MainWindow(Gtk.Window):
         filem.set_submenu(filemenu)
 
         exit = Gtk.MenuItem("Acerca de")
-        exit.connect("activate",acercaDeMi())
+        #exit.connect("activate",acercaDeMi())
         filemenu.append(exit)
 
         mb.append(filem)
@@ -49,3 +49,4 @@ class MainWindow(Gtk.Window):
 
 
     def acercaDeMi(self):
+        De
