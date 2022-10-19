@@ -14,8 +14,8 @@ class MainWindow(Gtk.Window):
         super().__init__(title="NBA")
         self.connect("destroy", Gtk.main_quit)
         self.set_border_width(15)
-        self.set_default_size(400, 400)
-
+        self.set_default_size(700, 500)
+        self.set_position(Gtk.WindowPosition.CENTER)
 
         header=Gtk.HeaderBar(title="Equipos")
         header.set_subtitle("Algunos equipos")

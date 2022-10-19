@@ -21,8 +21,10 @@ class Cell(Gtk.EventBox):
     def on_click(self, widget, event):
         image = Gtk.Image()
         image.set_from_pixbuf(self.image.get_pixbuf())
+
+
         dwin= DetailWindow(image, self.titulo, self.label2)
-        dwin.show_all()
+
 
 
 

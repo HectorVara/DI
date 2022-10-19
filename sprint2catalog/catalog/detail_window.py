@@ -10,7 +10,7 @@ class DetailWindow(Gtk.Window):
         super().__init__(title=titulo)
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
-
+        self.set_position(Gtk.WindowPosition.CENTER)
 
         self.set_border_width(15)
         self.set_default_size(200, 200)
