@@ -2,13 +2,9 @@ import gi
 from gi.repository import GdkPixbuf
 
 gi.require_version("Gtk", "3.0")
-from gi.repository import Gtk
+from gi.repository import Gtk, GdkPixbuf
 from detail_window import DetailWindow
 class Cell(Gtk.EventBox):
-    name= None
-    image=None
-    titulo=None
-    label2=None
     def __init__(self, name, image):
      super().__init__()
      self.name=name
@@ -20,34 +16,13 @@ class Cell(Gtk.EventBox):
      box.pack_start(Gtk.Label(label=name), False, False, 0)
      box.pack_start(image, True, True, 0)
      self.add(box)
-     #self.connect("button-release-event", self.on_click)
+     self.connect("button-release-event", self.on_click)
 
-    """def on_click(self, widget, event):
-        image = self.asignarImagen(self.name)
+    def on_click(self, widget, event):
+        image = Gtk.Image()
+        image.set_from_pixbuf(self.image.get_pixbuf())
         dwin= DetailWindow(image, self.titulo, self.label2)
         dwin.show_all()
-
-    def asignarImagen(self, name):
-        image = Gtk.Image()
-        pixbuf = None
-        if name == "Suns":
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale("data/unedited/Suns.jpg", 200, 200, False)
-
-        elif name == "Hornets":
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale("data/unedited/Hornets.png", 200, 200, False)
-
-        elif name == "Nets":
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale("data/unedited/Nets.jpg", 200, 200, False)
-
-        elif name == "Raptors":
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale("data/unedited/Raptors.jpg", 200, 200, False)
-
-        else:
-            pixbuf = GdkPixbuf.Pixbuf.new_from_file_at_scale("data/unedited/Spurs.png", 200, 200, False)
-
-
-        image.set_from_pixbuf(pixbuf)
-        return image"""
 
 
 
