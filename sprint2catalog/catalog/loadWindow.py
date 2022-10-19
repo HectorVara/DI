@@ -37,7 +37,7 @@ class LoadWindow(Gtk.Window):
                 shutil.copyfileobj(r.raw, f)
             image = Gtk.Image.new_from_file("temp.png")
             result.append({"name": name, "description": description, "gtk_image": image})
-            GLib.idle_add(self.start_main_window, result)
+        GLib.idle_add(self.start_main_window, result)
     def start_main_window(self, loaded_items_list):
         win= MainWindow(loaded_items_list)
         win.show_all()
