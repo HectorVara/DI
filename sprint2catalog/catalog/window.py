@@ -22,20 +22,30 @@ class MainWindow(Gtk.Window):
         header.props.show_close_button= True
 
         self.set_titlebar(header)
+        mb = Gtk.MenuBar()
+
+        filemenu = Gtk.Menu()
+        filem = Gtk.MenuItem("Ayuda")
+        filem.set_submenu(filemenu)
+
+        exit = Gtk.MenuItem("Acerca de")
+        exit.connect("activate",acercaDeMi())
+        filemenu.append(exit)
+
+        mb.append(filem)
+
+        vbox = Gtk.VBox(False, 2)
+        vbox.pack_start(mb, False, False, 0)
 
         scrolled= Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        scrolled.add(vbox)
         scrolled.add(self.flowbox)
         self.add(scrolled)
 
-
-
-        """self.flowbox.add(cell_one)
-        self.flowbox.add(cell_two)
-        self.flowbox.add(cell_three)
-        self.flowbox.add(cell_four)
-        self.flowbox.add(cell_five)"""
         for item in data_source:
             cell= Cell(item.get("name"), item.get("gtk_image"))
             self.flowbox.add(cell)
 
+
+    def acercaDeMi(self):
