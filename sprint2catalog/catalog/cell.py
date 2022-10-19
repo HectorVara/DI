@@ -20,9 +20,9 @@ class Cell(Gtk.EventBox):
      box.pack_start(Gtk.Label(label=name), False, False, 0)
      box.pack_start(image, True, True, 0)
      self.add(box)
-     self.connect("button-release-event", self.on_click)
+     #self.connect("button-release-event", self.on_click)
 
-    def on_click(self, widget, event):
+    """def on_click(self, widget, event):
         image = self.asignarImagen(self.name)
         dwin= DetailWindow(image, self.titulo, self.label2)
         dwin.show_all()
@@ -47,7 +47,7 @@ class Cell(Gtk.EventBox):
 
 
         image.set_from_pixbuf(pixbuf)
-        return image
+        return image"""
 
 
 
