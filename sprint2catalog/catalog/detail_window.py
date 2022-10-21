@@ -6,8 +6,12 @@ from gi.repository import Gtk
 class DetailWindow(Gtk.Window):
 
 
-    def __init__(self, image, titulo, label2):
+    def __init__(self, image, titulo, label2, lista):
         super().__init__(title=titulo)
+        self.titulo= titulo
+        self.lista= lista
+        self.image= image
+        self.connect("destroy", self.on_destroy) #Al cerrar la ventana invoco la función on_destroy
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         self.set_position(Gtk.WindowPosition.CENTER)
@@ -20,6 +24,19 @@ class DetailWindow(Gtk.Window):
         box.pack_start(label2, True, True, 0)
 
         self.add(box)
+    def on_destroy(self,event): #con esta función se borra de la lista el título, que es igual al nombre, de la lista
+        self.lista.remove(self.titulo)
+
+    def send_lista(self):
+
+        return self.lista
+
+
+
+
+
+
+
 
 
 

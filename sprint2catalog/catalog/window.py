@@ -1,17 +1,18 @@
 import gi
 import requests, threading, shutil
 from gi.repository import GdkPixbuf
-
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 from gi.repository import GLib
 from cell import Cell
+from detail_window import DetailWindow
 
 class MainWindow(Gtk.Window):
+    flowbox = Gtk.FlowBox()
 
-    flowbox= Gtk.FlowBox()
     def __init__(self, data_source):
         super().__init__(title="NBA")
+
         self.connect("destroy", Gtk.main_quit)
         self.set_border_width(15)
         self.set_default_size(700, 500)
@@ -23,30 +24,33 @@ class MainWindow(Gtk.Window):
 
         self.set_titlebar(header)
         mb = Gtk.MenuBar()
-
         filemenu = Gtk.Menu()
-        filem = Gtk.MenuItem("Ayuda")
-        filem.set_submenu(filemenu)
+        ayuda = Gtk.MenuItem("Ayuda")
+        ayuda.set_submenu(filemenu)
 
-        exit = Gtk.MenuItem("Acerca de")
-        #exit.connect("activate",acercaDeMi())
-        filemenu.append(exit)
+        acerca = Gtk.MenuItem("Acerca de")
+        acerca.connect("button-release-event",self.on_click)
+        filemenu.append(acerca)
 
-        mb.append(filem)
-
-        vbox = Gtk.VBox(False, 2)
-        vbox.pack_start(mb, False, False, 0)
-
+        mb.append(ayuda)
         scrolled= Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        scrolled.add(vbox)
+        vbox = Gtk.VBox(False, 2)
+        vbox.pack_start(mb, False, False, 0)
+        vbox.pack_start(scrolled, True, True, 0)
         scrolled.add(self.flowbox)
-        self.add(scrolled)
+        self.add(vbox)
+
 
         for item in data_source:
             cell= Cell(item.get("name"), item.get("gtk_image"))
             self.flowbox.add(cell)
 
-
-    def acercaDeMi(self):
-        De
+    def on_click(self, widget, event):
+        image_url = "https://github.com/HectorVara/DI/blob/master/api-rest/edited/The-Big-Lebowski.jpeg?raw=true"
+        r = requests.get(image_url, stream=True)
+        with open("temp.png", "wb") as f:
+            shutil.copyfileobj(r.raw, f)
+        image = Gtk.Image.new_from_file("temp.png")
+        win= DetailWindow(image, "Acerca de mi", Gtk.Label("The Dude abides, Cheers!"))
+        win.show_all()
