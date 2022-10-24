@@ -4,7 +4,8 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk, GdkPixbuf
 from detail_window import DetailWindow
 class Cell(Gtk.EventBox):
-    lista = [] #En ésta lista voy a meter los nombres de las ventanas abiertas
+    lista = [] #En ésta lista voy a meter los nombres de las ventanas abiertas. La idea es que no se abra la misma ventana
+               #un número indefinido de veces y si se cierra, que se pueda volver a abrir
     def __init__(self, name, image):#En el constructor inicializamos los parámetros
      super().__init__()
      self.name=name
@@ -28,7 +29,8 @@ class Cell(Gtk.EventBox):
             dwin= DetailWindow(image, self.titulo, self.label2,self.lista) #Aquí se invoca una ventana tipo DetailWindow que muestra
                                                             #la imagen, título y la etiqueta
             dwin.show_all()
-        lista = DetailWindow.send_lista #Recojo la lista para ver si se ha cerrado alguna
+
+        lista = DetailWindow.get_lista #Recojo la lista para ver si se ha cerrado alguna
 
 
 

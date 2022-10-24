@@ -9,7 +9,7 @@ from detail_window import DetailWindow
 
 class MainWindow(Gtk.Window):
     flowbox = Gtk.FlowBox()
-
+    lista= []
     def __init__(self, data_source):
         super().__init__(title="NBA")
 
@@ -46,11 +46,16 @@ class MainWindow(Gtk.Window):
             cell= Cell(item.get("name"), item.get("gtk_image"))
             self.flowbox.add(cell)
 
-    def on_click(self, widget, event):
+    def on_click(self, widget, event): #Aquí repito el proceso para que no se abra esta ventana varias veces
+        name= "Acerca de mi"
         image_url = "https://github.com/HectorVara/DI/blob/master/api-rest/edited/The-Big-Lebowski.jpeg?raw=true"
         r = requests.get(image_url, stream=True)
         with open("temp.png", "wb") as f:
             shutil.copyfileobj(r.raw, f)
         image = Gtk.Image.new_from_file("temp.png")
-        win= DetailWindow(image, "Acerca de mi", Gtk.Label("The Dude abides, Cheers!"))
-        win.show_all()
+        if name not in self.lista:
+            self.lista.append(name)
+            dwin= DetailWindow(image, "Acerca de mi", Gtk.Label("The Dude abides, Cheers!"),self.lista)
+
+            dwin.show_all()
+        lista = DetailWindow.get_lista

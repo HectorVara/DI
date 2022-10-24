@@ -25,9 +25,10 @@ class DetailWindow(Gtk.Window):
 
         self.add(box)
     def on_destroy(self,event): #con esta función se borra de la lista el título, que es igual al nombre, de la lista
+                                #para poder volver a abrir la ventana
         self.lista.remove(self.titulo)
 
-    def send_lista(self):
+    def get_lista(self):
 
         return self.lista
 
