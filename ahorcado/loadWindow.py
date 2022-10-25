@@ -25,11 +25,11 @@ class LoadWindow(Gtk.Window):
         thread.start()
 
     def load_json(self):
-        response = requests.get('https://raw.githubusercontent.com/HectorVara/DI/master/api-rest/catalog.json')
+        response = requests.get('https://raw.githubusercontent.com/HectorVara/DI/master/ahorcado/resources/data.json')
         json_list = response.json()
         result = []
         for json_item in json_list:
-            name = json_item.get("name")
+            fallos = json_item.get("fallos")
             description = json_item.get("description")
             image_url = json_item.get("image_url")
             r = requests.get(image_url, stream=True)
