@@ -5,9 +5,6 @@ from window import MainWindow
 from loadWindow import LoadWindow
 from detail_window import DetailWindow
 
-
-"""dwin= DetailWindow(Gtk.Image.new_from_file("data/edited/Suns.jpg"), Gtk.Label("Hornets"),Gtk.Label("Logo Hornets"))
-dwin.show_all()"""
 win = LoadWindow()
 win.show_all()
 Gtk.main()

@@ -1,10 +1,7 @@
 import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
-
-
 class DetailWindow(Gtk.Window):
-
 
     def __init__(self, image, titulo, label2, lista):
         super().__init__(title=titulo)
