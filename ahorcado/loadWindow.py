@@ -30,16 +30,16 @@ class LoadWindow(Gtk.Window):
         result = []
         for json_item in json_list:
             fallos = json_item.get("fallos")
-            description = json_item.get("description")
-            image_url = json_item.get("image_url")
+
+            image_url = json_item.get("url_imagen")
             r = requests.get(image_url, stream=True)
             with open("temp.png", "wb") as f:
                 shutil.copyfileobj(r.raw, f)
             image = Gtk.Image.new_from_file("temp.png")
-            result.append({"name": name, "description": description, "gtk_image": image})
+            result.append({"fallos": fallos, "gtk_image": image})
         GLib.idle_add(self.start_main_window, result)
     def start_main_window(self, loaded_items_list):
-        win= MainWindow(loaded_items_list)
+        win= juegoAhorcado(loaded_items_list)
         win.show_all()
         self.disconnect_by_func(Gtk.main_quit)
         self.close()

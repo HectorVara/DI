@@ -7,24 +7,27 @@ gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
 
 class juegoAhorcado(Gtk.Window):
-    image = Gtk.Image.new_from_file("C:\\msys64\\home\\Hector\\DI\\ahorcado\\resources\\1.png")
+    image = Gtk.Image()
     entry = Gtk.Entry()
     entry.set_max_length(1)
     fallos = 0
     letras = ""
-    letrero = ""
+    letrero = []
+    letreroString=""
     letraJugada=""
+    letrasUsadas=""
     nuestraPalabra=""
     palabras = ["bart", "homer", "marge", "lisa", "maggie", "milhouse", "krusty", "skinner", "otto", "smithers",
                 "burns"]
     elegida = palabras[random.randint(0, len(palabras) - 1)]
+    print(elegida)
     label = Gtk.Label()
-    for i in elegida:
-        letrero = letrero + " __"
+    letrasJugadas=Gtk.Label()
+    numeroFallos= Gtk.Label()
 
-    label.set_text(letrero)
+    ficheroJson= []
 
-    def __init__(self):
+    def __init__(self, data_source):
         super().__init__(title="Ahorcado de los Simpson")
         self.set_border_width(15)
         self.set_default_size(200, 200)
@@ -32,42 +35,80 @@ class juegoAhorcado(Gtk.Window):
         box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box2 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
 
-
-        self.entry.set_text("Texto aqui...")
+        self.entry.set_text("")
         button= Gtk.Button("Juega")
         button.connect("clicked", self.on_button_clicked)
-
-
+        self.cargarImagen()
         self.add(box)
         box.pack_start(self.label, True, True, 0)
         box.pack_start(self.image, True, True, 0)
+        box.pack_start(self.letrasJugadas, True, True, 0)
+        box.pack_start(self.numeroFallos, True, True, 0)
         box.pack_start(box2, True, True, 0)
         box2.pack_start(self.entry, True, True, 0)
         box2.pack_start(button, True, True, 0)
+        self.ficheroJson= data_source
 
-    def on_button_clicked(self):
-        self.letraJugada= self.entry.get_text()
-        while not self.hasGanado() or self.fallos <6:
-            self.comprobarJugada(self.letraJugada, self.elegida)
+        for i in range(len(self.elegida)):
+            self.letrero.append("_")
+        self.listaToString()
+
+        self.label.set_text(self.letreroString)
+    def listaToString(self):
+        self.letreroString=""
+        for i in range (len(self.letrero)):
+            self.letreroString += self.letrero[i]
+
+    def on_button_clicked(self, widget):
+
+        self.letraJugada = self.entry.get_text()
+        self.letrasUsadas += self.letraJugada
+        self.entry.set_text("")
+
+        self.letrasJugadas.set_text(self.letrasUsadas)
+        self.comprobarJugada(self.letraJugada, self.elegida, self.letrero)
+        self.cargarImagen()
+        self.comprobarResultado()
+
+    def comprobarResultado(self):
+        if self.elegida == self.letreroString:
+            self.label.set_text("HAS GANADO!!")
+
+        if self.fallos > 5:
+            self.label.set_text("HAS PERDIDO :(")
 
 
+    def comprobarJugada(self, letra, elegida,letrero):
+        acierto= False
 
-    def hasGanado(self):
-        if self.elegida == self.jugada:
-            return True
-        else:
-            return False
-    def comprobarJugada(self, letra, elegida):
-
-        for i in elegida:
+        for i in range (len(elegida)):
             if letra == elegida[i]:
-                self.letrero[i] = letra
-            else:
+                letrero[i] = letra
+                self.listaToString()
+                self.label.set_text(self.letreroString)
+                acierto= True
 
-                self.fallos += 1
-        self.label.set_text(self.letrero)
-    def cargarImagen(self, fallos, imagen):
-        self.image=
+
+
+        if not acierto:
+            self.fallos += 1
+            self.numeroFallos.set_text("Fallos: "+str(self.fallos))
+
+    def cargarImagen(self):
+        #self.image= Gtk.Image.new_from_file("C:\\msys64\\home\\Hector\\DI\\ahorcado\\resources\\portada.jpg")
+        if self.fallos == 0:
+           self.image= Gtk.Image.new_from_file("C:\\msys64\\home\\Hector\\DI\\ahorcado\\resources\\portada.jpg")
+
+        else:
+            for item in self.ficheroJson:
+
+                if self.fallos == item.get("fallos"):
+
+                    self.image.set_from_pixbuf(item.get("gtk_image").get_pixbuf())
+
+
+
+
 
 
 
