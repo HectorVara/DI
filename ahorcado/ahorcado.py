@@ -24,6 +24,8 @@ class juegoAhorcado(Gtk.Window):
     label = Gtk.Label()
     letrasJugadas=Gtk.Label()
     numeroFallos= Gtk.Label()
+    button = Gtk.Button("Juega")
+
 
     ficheroJson= []
 
@@ -36,9 +38,10 @@ class juegoAhorcado(Gtk.Window):
         box2 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
 
         self.entry.set_text("")
-        button= Gtk.Button("Juega")
-        button.connect("clicked", self.on_button_clicked)
-        self.cargarImagen()
+
+        self.button.connect("clicked", self.on_button_clicked)
+
+
         self.add(box)
         box.pack_start(self.label, True, True, 0)
         box.pack_start(self.image, True, True, 0)
@@ -46,14 +49,17 @@ class juegoAhorcado(Gtk.Window):
         box.pack_start(self.numeroFallos, True, True, 0)
         box.pack_start(box2, True, True, 0)
         box2.pack_start(self.entry, True, True, 0)
-        box2.pack_start(button, True, True, 0)
+        box2.pack_start(self.button, True, True, 0)
+
         self.ficheroJson= data_source
+        self.fallos = 0
+        self.cargarImagen()
 
         for i in range(len(self.elegida)):
-            self.letrero.append("_")
+            self.letrero.append("__ ")
         self.listaToString()
-
         self.label.set_text(self.letreroString)
+
     def listaToString(self):
         self.letreroString=""
         for i in range (len(self.letrero)):
@@ -73,9 +79,11 @@ class juegoAhorcado(Gtk.Window):
     def comprobarResultado(self):
         if self.elegida == self.letreroString:
             self.label.set_text("HAS GANADO!!")
+            self.button.set_sensitive(False)
 
         if self.fallos > 5:
             self.label.set_text("HAS PERDIDO :(")
+            self.button.set_sensitive(False)
 
 
     def comprobarJugada(self, letra, elegida,letrero):
@@ -95,11 +103,7 @@ class juegoAhorcado(Gtk.Window):
             self.numeroFallos.set_text("Fallos: "+str(self.fallos))
 
     def cargarImagen(self):
-        #self.image= Gtk.Image.new_from_file("C:\\msys64\\home\\Hector\\DI\\ahorcado\\resources\\portada.jpg")
-        if self.fallos == 0:
-           self.image= Gtk.Image.new_from_file("C:\\msys64\\home\\Hector\\DI\\ahorcado\\resources\\portada.jpg")
 
-        else:
             for item in self.ficheroJson:
 
                 if self.fallos == item.get("fallos"):
