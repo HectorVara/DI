@@ -9,18 +9,18 @@ from gi.repository import Gtk
 class juegoAhorcado(Gtk.Window):
     image = Gtk.Image()
     entry = Gtk.Entry()
-    entry.set_max_length(1)
+    entry.set_max_length(1)#Solo se permite introducir un caracter
     fallos = 0
     letras = ""
-    letrero = []
-    letreroString=""
-    letraJugada=""
-    letrasUsadas=""
+    letrero = [] #Aquí se ve las los barras bajas o letras según se vaya acertando
+    letreroString="" #La variable lista anterior que luego se pasa a string para comparar con la elegida
+    letraJugada=""#La letra elegida por el usuario
+    letrasUsadas=""#las letras que se van utilizando
     nuestraPalabra=""
     palabras = ["bart", "homer", "marge", "lisa", "maggie", "milhouse", "krusty", "skinner", "otto", "smithers",
                 "burns"]
     elegida = palabras[random.randint(0, len(palabras) - 1)]
-    print(elegida)
+    #print(elegida) Para realizar pruebas conociendo la palabra elegida al azar
     label = Gtk.Label()
     letrasJugadas=Gtk.Label()
     numeroFallos= Gtk.Label()
@@ -30,6 +30,9 @@ class juegoAhorcado(Gtk.Window):
     ficheroJson= []
 
     def __init__(self, data_source):
+        """En el cosntructor se diseña la ventana del juego y sus elementos
+        El letrero se usa como lista porque es más fácil intercambiar letras y luego se pasa a string
+        para insertarlo en el Label"""
         super().__init__(title="Ahorcado de los Simpson")
         self.set_border_width(15)
         self.set_default_size(200, 200)
@@ -68,7 +71,7 @@ class juegoAhorcado(Gtk.Window):
     def on_button_clicked(self, widget):
 
         self.letraJugada = self.entry.get_text()
-        self.letrasUsadas += self.letraJugada
+        self.letrasUsadas += self.letraJugada#Se añade la letra escrita en el Entry a la cadena para abajo añadirla a la Label
         self.entry.set_text("")
 
         self.letrasJugadas.set_text(self.letrasUsadas)
@@ -77,6 +80,7 @@ class juegoAhorcado(Gtk.Window):
         self.comprobarResultado()
 
     def comprobarResultado(self):
+        #Aquí se comprueba si el usuario ha ganado o perdido y se termina la partida desactivando el botón
         if self.elegida == self.letreroString:
             self.label.set_text("HAS GANADO!!")
             self.button.set_sensitive(False)
@@ -88,7 +92,7 @@ class juegoAhorcado(Gtk.Window):
 
     def comprobarJugada(self, letra, elegida,letrero):
         acierto= False
-
+        # Se comprueba la letra jugada y si hay coincdencia se muestra en la Label
         for i in range (len(elegida)):
             if letra == elegida[i]:
                 letrero[i] = letra
@@ -97,7 +101,7 @@ class juegoAhorcado(Gtk.Window):
                 acierto= True
 
 
-
+        # Si no hay coincidencia se suma un fallo y se muestra
         if not acierto:
             self.fallos += 1
             self.numeroFallos.set_text("Fallos: "+str(self.fallos))
