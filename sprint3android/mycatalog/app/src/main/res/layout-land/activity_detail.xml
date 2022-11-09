@@ -38,7 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:text="Camiseta del album kill em all de Metallica,\n color negro, talla XL. 100% algodón.\n Banda fundada en San Francisco"
+        android:text="Camiseta del album kill em all de Metallica,
+        \n color negro, talla XL. 100% algodón.
+        \n Banda fundada en San Francisco"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="30dp"
