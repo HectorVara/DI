@@ -6,15 +6,10 @@
     tools:context=".CatalogFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Página principal" />
     <Button
         android:id="@+id/boton"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
@@ -23,3 +18,6 @@
         android:text="Navegar al detalle"/>
 
 </FrameLayout>
+
+
+

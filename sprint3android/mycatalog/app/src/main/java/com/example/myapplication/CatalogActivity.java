@@ -31,8 +31,6 @@ public class CatalogActivity extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(findViewById(R.id.toolbar));
 
@@ -46,6 +44,7 @@ public class CatalogActivity extends AppCompatActivity implements NavigationView
         MenuItem menuItem = navigationView.getMenu().getItem(0);
         onNavigationItemSelected(menuItem);
         menuItem.setChecked(true);
+
 
     }
     @Override

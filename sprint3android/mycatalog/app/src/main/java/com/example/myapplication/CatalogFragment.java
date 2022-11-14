@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,7 +16,7 @@ import android.widget.Button;
  * Use the {@link CatalogFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CatalogFragment extends Fragment {
+public class CatalogFragment  extends Fragment {
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -63,7 +64,8 @@ public class CatalogFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        Button boton= (Button) getView().findViewById(R.id.boton);
+        View root = inflater.inflate(R.layout.fragment_catalog, container, false);
+        Button boton= root.findViewById(R.id.boton);
         boton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
