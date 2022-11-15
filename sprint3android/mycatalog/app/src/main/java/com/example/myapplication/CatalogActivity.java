@@ -32,7 +32,8 @@ public class CatalogActivity extends AppCompatActivity implements NavigationView
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(findViewById(R.id.toolbar));
+        setSupportActionBar(toolbar);
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
