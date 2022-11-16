@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79c0feb3-1f9b-449c-bd85-458b251e16be" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../api-rest/edited/The-Big-Lebowski.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sprint1/Fibonacci.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../sprint1/concurso.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../sprint1/fibonacci2.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../sprint1/principal.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint2catalog/catalog/cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/../sprint2catalog/catalog/cell.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sprint2catalog/catalog/window.py" beforeDir="false" afterPath="$PROJECT_DIR$/../sprint2catalog/catalog/window.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,16 +53,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/cell.py</url>
-          <line>22</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
