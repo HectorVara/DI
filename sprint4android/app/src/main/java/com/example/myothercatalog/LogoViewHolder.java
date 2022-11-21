@@ -41,13 +41,7 @@ public class LogoViewHolder extends RecyclerView.ViewHolder {
         context= itemView.getContext();
         descripcion= (TextView) itemView.findViewById(R.id.descripcion);
         imagen = (ImageView)  itemView.findViewById(R.id.imagen_logo);
-
-    }
-    public void showData(LogoData data, Activity activity){
-        descripcion.setText(data.getDescrpcion());
-        cancelPreviousImageDownloadIfAny();
-        Util.downloadBitmapToImageView(data.getImageUrl(), this.imagen);
-        imagen.setOnClickListener(new View.OnClickListener() {
+        itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), CatalogActivity.class);
@@ -55,6 +49,14 @@ public class LogoViewHolder extends RecyclerView.ViewHolder {
                 intent.putExtra("description", data.getDescrpcion());
             }
         });
+
+    }
+    public void showData(LogoData data, Activity activity){
+        descripcion.setText(data.getDescrpcion());
+        cancelPreviousImageDownloadIfAny();
+        Util.downloadBitmapToImageView(data.getImageUrl(), this.imagen);
+
+
 
     }
 
