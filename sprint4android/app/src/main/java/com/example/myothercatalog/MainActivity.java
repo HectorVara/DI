@@ -1,6 +1,7 @@
 package com.example.myothercatalog;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,12 +27,14 @@ public class MainActivity extends AppCompatActivity {
     private Context context= this;
     private LogoViewHolder viewHolder;
     private List<LogoData> listaLogos;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //reciclerView= findViewById(R.id.RecyclerView);
         Runnable loadJson= new Runnable() {
             @Override
             public void run() {
@@ -45,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
                                         JSONObject logo= response.getJSONObject(i);
                                         LogoData unLogo= new LogoData(logo);
                                         listaLogos.add(unLogo);
-                                        viewHolder.getBitMapFromUrl(unLogo.getImageUrl());
+                                        Toast.makeText
+                                                (context,"GET OK: " , Toast.LENGTH_LONG).show();
+                                        //viewHolder.getBitMapFromUrl(unLogo.getImageUrl());
                                     } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    } catch (IOException e) {
                                         e.printStackTrace();
                                     }
                                 }
