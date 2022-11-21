@@ -1,0 +1,11 @@
+[
+{"name": "Suns", "description": "Logo de los Suns", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Suns.jpg?raw=true"},
+{"name": "Hornets", "description": "Logo de los Hornets", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Hornets.png?raw=true"},
+{"name": "Raptors", "description": "Logo de los Raptors", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Raptors.jpg?raw=true"},
+{"name": "Spurs", "description": "Logo de los Spurs", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Spurs.png?raw=true"},
+{"name": "Nets", "description": "Logo de los Nets", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Nets.jpg?raw=true"},
+{"name": "Knicks", "description": "Logo de los Knicks", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Knicks.png?raw=true"},
+{"name": "Lakers", "description": "Logo de los Lakers", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Lakers.jpg?raw=true"},
+{"name": "Nuggets", "description": "Logo de los Nuggets", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Nuggetss.png?raw=true"},
+{"name": "Warriors", "description": "Logo de los Warriors", "image_url": "https://github.com/HectorVara/DI/blob/master/api-rest/edited/Warriors.png?raw=true"}
+]
