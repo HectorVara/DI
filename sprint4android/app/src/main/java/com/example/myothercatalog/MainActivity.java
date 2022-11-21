@@ -1,10 +1,15 @@
 package com.example.myothercatalog;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -12,6 +17,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -23,22 +29,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private RequestQueue queue;
+
     private Context context= this;
     private LogoViewHolder viewHolder;
-    private List<LogoData> listaLogos;
+    private RequestQueue queue;
+    private List<LogoData> lista_logos;
     private RecyclerView recyclerView;
+    private JsonArrayRequest request;
+    private AlertDialog.Builder myBuilder;
+    private AlertDialog myDialog;
+
+    private View inflateDialogView() {
+        LayoutInflater inflater = getLayoutInflater();
+        View inflatedView = inflater.inflate(R.layout.loading, null);
+
+        return inflatedView;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //reciclerView= findViewById(R.id.RecyclerView);
+        Activity activity=this;
+        this.recyclerView = findViewById(R.id.RecyclerView);
+        this.queue = Volley.newRequestQueue(context);
+        List<LogoData> listaLogos= new ArrayList<>();
+        myBuilder = new AlertDialog.Builder(context);
+        myBuilder.setView(inflateDialogView());
+        myDialog = myBuilder.create();
+        myDialog.show();
         Runnable loadJson= new Runnable() {
             @Override
             public void run() {
-                JsonArrayRequest request= new JsonArrayRequest(Request.Method.GET,
+
+                request= new JsonArrayRequest(Request.Method.GET,
                         "https://raw.githubusercontent.com/HectorVara/DI/master/api-rest/catalog.json",
                         null,
                         new Response.Listener<JSONArray>(){
@@ -49,13 +74,15 @@ public class MainActivity extends AppCompatActivity {
                                         JSONObject logo= response.getJSONObject(i);
                                         LogoData unLogo= new LogoData(logo);
                                         listaLogos.add(unLogo);
-                                        Toast.makeText
-                                                (context,"GET OK: " , Toast.LENGTH_LONG).show();
-                                        //viewHolder.getBitMapFromUrl(unLogo.getImageUrl());
+
+
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
                                 }
+                                LogoRecyclerViewAdapter adapter= new LogoRecyclerViewAdapter(listaLogos,activity);
+                                recyclerView.setAdapter(adapter);
+                                recyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
                             }
                         },
@@ -73,12 +100,18 @@ public class MainActivity extends AppCompatActivity {
 
                         });
                 queue.add(request);
-
+                myDialog.dismiss();
             }
         };
         Thread carga= new Thread(loadJson);
         carga.start();
 
 
+
     }
+
+
+
+
+
 }

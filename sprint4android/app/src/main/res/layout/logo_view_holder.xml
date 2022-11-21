@@ -8,20 +8,21 @@
         android:id="@+id/imagen_logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:scaleType="centerInside"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <TextView
         android:id="@+id/descripcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
+        android:layout_marginStart="20dp"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imagen_logo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imagen_logo"
+        app:layout_constraintBottom_toBottomOf="@id/imagen_logo"
+        app:layout_constraintTop_toTopOf="@id/imagen_logo"
+
         />
 
 
