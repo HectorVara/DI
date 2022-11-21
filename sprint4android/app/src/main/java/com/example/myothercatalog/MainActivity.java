@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
 
                 request= new JsonArrayRequest(Request.Method.GET,
-                        "https://raw.githubusercontent.com/HectorVara/DI/master/api-rest/catalog.json",
+                        "https://raw.githubusercontent.com/HectorVara/DI/master/sprint4android/catalog.json",
                         null,
                         new Response.Listener<JSONArray>(){
                             @Override
