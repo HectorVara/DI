@@ -36,15 +36,9 @@ public class MainActivity extends AppCompatActivity {
     private List<LogoData> lista_logos;
     private RecyclerView recyclerView;
     private JsonArrayRequest request;
-    private AlertDialog.Builder myBuilder;
-    private AlertDialog myDialog;
 
-    private View inflateDialogView() {
-        LayoutInflater inflater = getLayoutInflater();
-        View inflatedView = inflater.inflate(R.layout.loading, null);
 
-        return inflatedView;
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +46,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Activity activity=this;
+        //En el activity_main.xml solo tenemos el RecycerViewer. Aquí le asignamos al objeto
+        //recyclerview el recyclerviewer del xml
         this.recyclerView = findViewById(R.id.RecyclerView);
         this.queue = Volley.newRequestQueue(context);
         List<LogoData> listaLogos= new ArrayList<>();
-        myBuilder = new AlertDialog.Builder(context);
-        myBuilder.setView(inflateDialogView());
-        myDialog = myBuilder.create();
-        myDialog.show();
+        //Se carga el fichero Json en un hilo aparte, loadJson
         Runnable loadJson= new Runnable() {
             @Override
             public void run() {
@@ -74,12 +67,14 @@ public class MainActivity extends AppCompatActivity {
                                         JSONObject logo= response.getJSONObject(i);
                                         LogoData unLogo= new LogoData(logo);
                                         listaLogos.add(unLogo);
-
+         //Se recorre el array de la respuesta y se crea un objeto LogoData con cada objeto Json
+         //del JsonArray de la respuesta. Luego se meten en una lista
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
                                 }
+                                //Creamos el adaptador y se lo pasamos al reciclerView
                                 LogoRecyclerViewAdapter adapter= new LogoRecyclerViewAdapter(listaLogos,activity);
                                 recyclerView.setAdapter(adapter);
                                 recyclerView.setLayoutManager(new LinearLayoutManager(activity));
@@ -100,11 +95,13 @@ public class MainActivity extends AppCompatActivity {
 
                         });
                 queue.add(request);
-                myDialog.dismiss();
+
             }
         };
         Thread carga= new Thread(loadJson);
         carga.start();
+        //Se inicia e hilo dentro de Oncreate
+
 
 
 

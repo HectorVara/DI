@@ -33,9 +33,6 @@ public class LogoRecyclerViewAdapter extends RecyclerView.Adapter<LogoViewHolder
     public void onBindViewHolder(@NonNull LogoViewHolder holder, int position) {
         LogoData dataInPositionToBeRendered= allthedata.get(position);
         holder.showData(dataInPositionToBeRendered, activity);
-
-
-
     }
 
     @Override

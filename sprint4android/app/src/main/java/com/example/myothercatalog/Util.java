@@ -1,10 +1,15 @@
 package com.example.myothercatalog;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
+import android.view.LayoutInflater;
+import android.app.AlertDialog;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +27,9 @@ public class Util {
      * @param imageView An instance of ImageView where the result will be placed into.
      */
     public static void downloadBitmapToImageView(String url, ImageView imageView) {
+
         Context context = imageView.getContext();
+
         if (context instanceof Activity) {
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -35,8 +42,10 @@ public class Util {
                         }
                     });
                 }
+
             });
             thread.start();
+
         }
     }
 
@@ -52,4 +61,8 @@ public class Util {
             return null;
         }
     }
+
+
+
 }
+
