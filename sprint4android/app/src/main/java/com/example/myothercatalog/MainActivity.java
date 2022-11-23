@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private List<LogoData> lista_logos;
     private RecyclerView recyclerView;
     private JsonArrayRequest request;
-
+    private AlertDialog.Builder myBuilder;
+    private AlertDialog myDialog;
 
 
 
@@ -51,10 +52,16 @@ public class MainActivity extends AppCompatActivity {
         this.recyclerView = findViewById(R.id.RecyclerView);
         this.queue = Volley.newRequestQueue(context);
         List<LogoData> listaLogos= new ArrayList<>();
+        //Creamos un diálogo con el spinner y lo lanzamos
+        myBuilder = new AlertDialog.Builder(context);
+        myBuilder.setView(inflateDialogView());
+        myDialog = myBuilder.create();
+        myDialog.show();
         //Se carga el fichero Json en un hilo aparte, loadJson
         Runnable loadJson= new Runnable() {
             @Override
             public void run() {
+
 
                 request= new JsonArrayRequest(Request.Method.GET,
                         "https://raw.githubusercontent.com/HectorVara/DI/master/sprint4android/catalog.json",
@@ -79,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                                 recyclerView.setAdapter(adapter);
                                 recyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
+                                myDialog.dismiss();//Al terminar cerramos el spinner
                             }
                         },
                         new Response.ErrorListener(){
@@ -106,7 +114,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    private  View inflateDialogView() {
+        //Aquí se recoge el layout de loading, donde está el spinner
+        LayoutInflater inflater = getLayoutInflater();
+        View inflatedView = inflater.inflate(R.layout.loading, null);
 
+        return inflatedView;
+    }
 
 
 

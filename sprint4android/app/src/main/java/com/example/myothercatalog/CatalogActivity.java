@@ -14,8 +14,7 @@ import android.widget.TextView;
 public class CatalogActivity extends AppCompatActivity {
     private ImageView imagen;
     private TextView textView;
-    private AlertDialog.Builder myBuilder;
-    private AlertDialog myDialog;
+
 
     Context context = this;
 
@@ -29,20 +28,11 @@ public class CatalogActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String url = getIntent().getExtras().getString("image_url");
         String description = getIntent().getExtras().getString("description");
-        myBuilder = new AlertDialog.Builder(context);
-        myBuilder.setView(inflateDialogView());
-        myDialog = myBuilder.create();
-        myDialog.show();
-
+        //Con este método de la clase Util se descargan las imágenes y se insertan en el ImageView
         Util.downloadBitmapToImageView(url, this.imagen);
         textView.setText(description);
-        myDialog.dismiss();
-    }
-    private  View inflateDialogView() {
-        LayoutInflater inflater = getLayoutInflater();
-        View inflatedView = inflater.inflate(R.layout.loading, null);
 
-        return inflatedView;
     }
+
 
 }
