@@ -8,7 +8,7 @@
     android:background="#0B0B15"
     android:weightSum="6"
     tools:context=".MainActivity">
-
+    <!-- Con weightSum se reparte el máximo peso de los elementos hijos -->
     <TextView
         android:id="@+id/screen"
         android:layout_width="match_parent"
@@ -23,6 +23,9 @@
         android:layout_marginHorizontal="10dp"
         android:padding="10dp"
         />
+    <!-- layout_gravity establece  la gravedad del padre de la vista o del layout.En este caso el textview -->
+
+    <!-- A continuación se hacen cinco LinearLayout con cuatro botones cada uno -->
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -238,7 +241,7 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="*"
+            android:text="#"
             android:layout_margin="5dp"
             android:textColor="#FF0000"
             android:textSize="30dp"
